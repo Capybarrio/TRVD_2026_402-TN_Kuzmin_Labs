@@ -17,6 +17,7 @@ async function createUser({ username, email, password }) {
     name: username,
     email,
     password,
+    role: "user",
     cartData: createDefaultCart(),
   });
 
