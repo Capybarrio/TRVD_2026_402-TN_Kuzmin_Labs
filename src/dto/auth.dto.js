@@ -11,8 +11,8 @@ function validateSignupDto(body) {
   if (!isNonEmptyString(username)) errors.push("username is required");
   if (!isNonEmptyString(email) || !EMAIL_PATTERN.test(email.trim())) errors.push("valid email is required");
   if (!isNonEmptyString(password)) errors.push("password is required");
-  if (isNonEmptyString(password) && password.trim().length < 6) {
-    errors.push("password must be at least 6 characters long");
+  if (isNonEmptyString(password) && password.trim().length < 8) {
+    errors.push("password must be at least 8 characters long");
   }
 
   return {

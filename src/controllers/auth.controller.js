@@ -9,6 +9,7 @@ function signToken(user) {
       user: {
         id: user.id,
         role: user.role,
+        name: user.name,
       },
     },
     env.jwtSecret,
@@ -30,7 +31,16 @@ async function signupController(req, res) {
   const hashedPassword = await hashPassword(password);
   const user = await createUser({ username, email, password: hashedPassword });
   const token = signToken(user);
-  return res.json({ success: true, token });
+  return res.json({
+    success: true,
+    token,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+  });
 }
 
 async function loginController(req, res) {
@@ -47,7 +57,16 @@ async function loginController(req, res) {
   }
 
   const token = signToken(user);
-  return res.json({ success: true, token });
+  return res.json({
+    success: true,
+    token,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+  });
 }
 
 module.exports = {

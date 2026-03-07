@@ -19,3 +19,15 @@ upload/images/
 Thumbs.db
 .vscode/
 .idea/
+
+# Frontend (if stored in this repo)
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/coverage/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+frontend/.cache/
+frontend/.parcel-cache/
+frontend/.vite/

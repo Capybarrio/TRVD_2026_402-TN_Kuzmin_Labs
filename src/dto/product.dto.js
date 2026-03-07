@@ -40,7 +40,38 @@ function validateRemoveProductDto(body) {
   };
 }
 
+function validateUpdateProductDto(body) {
+  const errors = [];
+  const id = toInteger(body?.id);
+  const name = body?.name;
+  const image = body?.image;
+  const category = body?.category;
+  const newPrice = toNumber(body?.new_price);
+  const oldPrice = toNumber(body?.old_price);
+
+  if (id === null || id <= 0) errors.push("id must be a positive integer");
+  if (!isNonEmptyString(name)) errors.push("name is required");
+  if (!isNonEmptyString(image)) errors.push("image is required");
+  if (!isNonEmptyString(category)) errors.push("category is required");
+  if (newPrice === null || newPrice < 0) errors.push("new_price must be a non-negative number");
+  if (oldPrice === null || oldPrice < 0) errors.push("old_price must be a non-negative number");
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    data: {
+      id,
+      name: typeof name === "string" ? name.trim() : name,
+      image: typeof image === "string" ? image.trim() : image,
+      category: typeof category === "string" ? category.trim() : category,
+      new_price: newPrice,
+      old_price: oldPrice,
+    },
+  };
+}
+
 module.exports = {
   validateAddProductDto,
   validateRemoveProductDto,
+  validateUpdateProductDto,
 };

@@ -8,6 +8,7 @@ const env = {
   mongoUriDirect: process.env.MONGO_URI_DIRECT || "",
   jwtSecret: process.env.JWT_SECRET || "secret_ecom",
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "30m",
+  corsOrigin: process.env.CORS_ORIGIN || "http://localhost:3000",
   uploadDir: path.join(__dirname, "../../upload/images"),
 };
 

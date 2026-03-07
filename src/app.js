@@ -12,7 +12,12 @@ function createApp() {
   const upload = buildUploader(env.uploadDir);
 
   app.use(express.json());
-  app.use(cors());
+  app.use(
+    cors({
+      origin: env.corsOrigin,
+      credentials: true,
+    }),
+  );
   app.use("/images", express.static(path.join(__dirname, "../upload/images")));
 
   registerRoutes(app, { upload });

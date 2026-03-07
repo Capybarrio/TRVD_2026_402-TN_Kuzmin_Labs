@@ -16,6 +16,10 @@ async function removeProductById(id) {
   return Product.findOneAndDelete({ id });
 }
 
+async function updateProductById(id, payload) {
+  return Product.findOneAndUpdate({ id }, payload, { new: true });
+}
+
 async function getAllProducts() {
   return Product.find({});
 }
@@ -33,6 +37,7 @@ async function getPopularInWomen() {
 module.exports = {
   addProduct,
   removeProductById,
+  updateProductById,
   getAllProducts,
   getNewCollections,
   getPopularInWomen,

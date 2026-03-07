@@ -1,6 +1,7 @@
 const {
   addProduct,
   removeProductById,
+  updateProductById,
   getAllProducts,
   getNewCollections,
   getPopularInWomen,
@@ -22,6 +23,20 @@ async function removeProductController(req, res) {
   });
 }
 
+async function updateProductController(req, res) {
+  const { id, ...payload } = req.validatedBody;
+  const product = await updateProductById(id, payload);
+
+  if (!product) {
+    return res.status(404).json({ success: false, errors: "Product not found" });
+  }
+
+  return res.json({
+    success: true,
+    product,
+  });
+}
+
 async function getAllProductsController(req, res) {
   const products = await getAllProducts();
   return res.send(products);
@@ -40,6 +55,7 @@ async function getPopularInWomenController(req, res) {
 module.exports = {
   addProductController,
   removeProductController,
+  updateProductController,
   getAllProductsController,
   getNewCollectionsController,
   getPopularInWomenController,
